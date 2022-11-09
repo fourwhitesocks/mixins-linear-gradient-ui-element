@@ -1,0 +1,89 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: system-ui;
+    margin: 0;
+}
+
+@mixin linear-gradient($deg: -45deg, $clr-1: red, $clr-2: blue) {
+    background-image: linear-gradient($deg, $clr-1, $clr-2);
+}
+
+@mixin pseudo-underline($width: 5rem, $height: 1px, $bg-clr: rgb(28, 227, 138), $marginlr: auto) {
+    width: $width;
+    height: $height;
+    background-color: $bg-clr;
+    margin-left: $marginlr;
+    margin-right: $marginlr;
+
+}
+
+
+/*ryan martin had the answer see in discord */
+@mixin ui-element ($size: .5em, $color: white, $bg-color: black, $hover-color: black, $hover-bg-color: white) {
+
+    color: $color;
+    background-color: $bg-color;
+    padding: $size $size * 3;
+
+    &:hover,
+    &:focus {
+        color: $hover-color;
+        background-color: $hover-bg-color;
+    }
+}
+
+.button-one {
+    @include ui-element;
+}
+
+.button-two {
+    @include ui-element($hover-bg-color: yellow);
+}
+
+.badge-one {
+    display: inline-block;
+    @include ui-element($bg-color: white, $size: .5em, $color: black);
+}
+
+.badge-two {
+    display: inline-block;
+    @include ui-element($bg-color: black, $size: .5em, $color: rgb(0, 106, 255), $hover-bg-color: black, $hover-color: rgb(0, 106, 255));
+
+
+}
+
+.title::after {
+    content: '';
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @include pseudo-underline;
+}
+
+.section-one,
+.section-two,
+.section-three {
+    text-align: center;
+    padding: 10vh 0;
+
+}
+
+.section-one {
+    color: white;
+    @include linear-gradient;
+}
+
+.section-two {
+    color: white;
+    @include linear-gradient($deg: -72deg, $clr-1: purple, $clr-2: limegreen)
+}
+
+.section-three {
+    @include linear-gradient($deg: 0deg, $clr-1: orange, $clr-2: yellow)
+}
